@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ridwan_academy.course tree view -->
+    <record id="ridwan_academy_course_view_tree" model="ir.ui.view">
+        <field name="name">ridwan_academy.course.view.tree</field>
+        <field name="model">ridwan_academy.course</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ridwan_academy.course form view -->
+    <record id="ridwan_academy_course_view_form" model="ir.ui.view">
+        <field name="name">ridwan_academy.course.view.form</field>
+        <field name="model">ridwan_academy.course</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="user_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                                <field name="description"/>
+                        </page>
+                        <page string="Sessions" name="sessions">
+                                <field name="session_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ridwan_academy.course search view -->
+    <record id="ridwan_academy_course_view_search" model="ir.ui.view">
+        <field name="name">ridwan_academy.course.view.search</field>
+        <field name="model">ridwan_academy.course</field>
+        <field name="arch" type="xml">
+            <search string="Search Description">
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="description"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ridwan_academy.course action window -->
+    <record id="ridwan_academy_course_action" model="ir.actions.act_window">
+        <field name="name">Course</field>
+        <field name="res_model">ridwan_academy.course</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Root -->
+    <menuitem id="_menu_ridwan_academy" name="Academy"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="_menu_act_course" 
+        name="Course" 
+        parent="_menu_ridwan_academy" 
+        action="ridwan_academy_course_action" 
+        sequence="10  "/>
+
+</odoo>

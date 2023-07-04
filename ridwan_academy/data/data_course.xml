@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="course_technical_odoo" model="ridwan_academy.course">
+        <field name="name">Technical Odoo</field>
+        <field name="description">Training Technical Odoo v15</field>
+    </record>
+
+    <record id="course_python" model="ridwan_academy.course">
+        <field name="name">Python Basic</field>
+        <field name="description">Training Python Basic</field>
+    </record>
+
+</odoo>
