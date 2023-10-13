@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- itsm.brands tree view -->
+    <record id="itsm.brands_view_tree" model="ir.ui.view">
+        <field name="name">itsm.brands.view.tree</field>
+        <field name="model">itsm.brands</field>
+        <field name="arch" type="xml">
+            <tree string="Brands" editable="bottom">
+                <!-- Add your fields here -->
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- itsm_brands action window -->
+    <record id="itsm_brands_action" model="ir.actions.act_window">
+        <field name="name">Brands</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">itsm.brands</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item Must have a parent & action -->
+    <menuitem id="_menu_act_brands" name="Brands" action="itsm_brands_action" parent="_menu_configuration" sequence="210"/>
+
+</odoo>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- itsm.services form view -->
+    <record id="itsm.services_view_form" model="ir.ui.view">
+        <field name="name">itsm.services.view.form</field>
+        <field name="model">itsm.services</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,waiting_approval,approved,rejected"/>
+                    <button name="action_confirm" states="draft" type="object" string="Confirm" class="btn-info" attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                    <button name="action_approved" states="waiting_approval" type="object" string="Approve" class="btn-success" attrs="{'invisible': [('state', 'not in', ['waiting_approval'])]}"/>
+                    <button name="action_rejected" states="waiting_approval" type="object" string="Rejected" class="btn-success" attrs="{'invisible': [('state', 'not in', ['waiting_approval'])]}"/>
+                    <button name="action_set_draft" states="waiting_approval" type="object" string="Set to Draft" class="btn-success" attrs="{'invisible': [('state', 'not in', ['waiting_approval'])]}"/>
+                </header>
+                <sheet>
+                    <group name="services_details" string="Services Details">
+                        <!-- Add your fields here -->
+                        <group>
+                            <field name="name" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                            <field name="services_date" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                        </group>
+                        <group>
+                            <field name="asset_id" options="{'no_open':True,'no_create':True}" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                            <field name="company_id" options="{'no_open':True,'no_create':True}" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="description" string="Description">
+                            <field name="description" attrs="{'readonly': [('state', 'not in', ['draft'])]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- itsm.services tree view -->
+    <record id="itsm.services_view_tree" model="ir.ui.view">
+        <field name="name">itsm.services.view.tree</field>
+        <field name="model">itsm.services</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="services_date"/>
+                <field name="asset_id"/>
+                <field name="description"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- itsm.services search view -->
+    <record id="itsm.services_view_search" model="ir.ui.view">
+        <field name="name">itsm.services.view.search</field>
+        <field name="model">itsm.services</field>
+        <field name="arch" type="xml">
+            <search string="Search Description">
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="services_date"/>
+                <field name="asset_id"/>
+                <field name="description"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- itsm_services action window -->
+    <record id="itsm_services_action" model="ir.actions.act_window">
+        <field name="name">Asset Repair</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">itsm.services</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="_menu_services" name="Services" parent="_menu_itsm" sequence="100"/>
+
+    <!-- This Menu Item Must have a parent & action -->
+    <menuitem id="_menu_act_services" name="Asset Repair" action="itsm_services_action" parent="_menu_services" sequence="105"/>
+
+</odoo>

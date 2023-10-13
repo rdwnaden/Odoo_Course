@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- ridwan_library.book tree view -->
+<record id="ridwan_library_book_view_tree" model="ir.ui.view">
+    <field name="name">ridwan_library.book.view.tree</field>
+    <field name="model">ridwan_library.book</field>
+    <field name="arch" type="xml">
+        <tree>
+            <!-- Add your fields here -->
+            <field name="name"/>
+            <field name="total"/>
+            <field name="description"/>
+            <field name="transaction_ids"/>
+            <field name="available_book"/>
+            
+        </tree>
+    </field>
+</record>
+
+<!-- ridwan_library.book form view -->
+<record id="ridwan_library_book_view_form" model="ir.ui.view">
+    <field name="name">ridwan_library.book.view.form</field>
+    <field name="model">ridwan_library.book</field>
+    <field name="arch" type="xml">
+        <form string="">
+            <header>
+                <button name="act_generate_book" type="object" string="Generate" class="btn-primary"/>
+                <button special="cancel" string="Cancel" class="btn-primary"/>
+            </header>
+            <sheet>
+                <group>
+                    <!-- Add your fields here -->
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="total"/>
+                        <field name="available_book"/>
+                    </group>               
+                </group>
+                <notebook>
+                    <page name="transaction_ids" string="Transaction">
+                        <field name="transaction_ids"/>
+                    </page>
+                    <page name="description" string="Description">
+                        <field name="description"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<!-- ridwan_library.book action window -->
+<record id="ridwan_library_book_action" model="ir.actions.act_window">
+    <field name="name">Book</field>
+    <field name="res_model">ridwan_library.book</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+    <!-- Root Menut -->
+    <menuitem
+        id="ridwan_library_menu"
+        name="Library"
+        sequence="10"/>
+
+    <menuitem
+        id="master_data_menu"
+        name="Master Data"
+        parent="ridwan_library_menu"
+        sequence="10"/>
+
+    <!-- Sub Menu -->
+    <menuitem
+        id="ridwan_library_book_menu"
+        name="Book"
+        action="ridwan_library_book_action"
+        parent="master_data_menu"
+        sequence="10"/>
+
+</odoo>

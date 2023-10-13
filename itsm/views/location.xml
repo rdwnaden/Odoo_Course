@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- itsm.location tree view -->
+    <record id="itsm.location_view_tree" model="ir.ui.view">
+        <field name="name">itsm.location.view.tree</field>
+        <field name="model">itsm.location</field>
+        <field name="arch" type="xml">
+            <tree string="Brands" editable="bottom">
+                <!-- Add your fields here -->
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- itsm_location action window -->
+    <record id="itsm_location_action" model="ir.actions.act_window">
+        <field name="name">Location</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">itsm.location</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item Must have a parent & action -->
+    <menuitem id="_menu_act_location" name="Location" action="itsm_location_action" parent="_menu_configuration" sequence="215"/>
+
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- itsm.dashboard form view -->
+    <record id="itsm.dashboard_view_form" model="ir.ui.view">
+        <field name="name">itsm.dashboard.view.form</field>
+        <field name="model">board.board</field>
+        <field name="arch" type="xml">
+            <form string="Dashboard">
+                <board style="2-2">
+                    <column>
+                        <action string="Asset Report" name="%(itsm_reporting_action)d"/>
+                        <action string="Renewal And Subscription" name="%(itsm_renewal_action)d"/>
+                    </column>
+                    <column>
+                        <action string="Asset Repair Report" name="%(itsm_repair_action)d"/>
+                    </column>
+                </board>
+            </form>
+        </field>
+    </record>
+
+    <!-- itsm_dashboard action window -->
+    <record id="itsm_dashboard_action" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="itsm.dashboard_view_form"/>
+    </record>
+
+    <!-- This Menu Root -->
+    <menuitem id="_menu_itsm" name="IT Services Management" web_icon="itsm,static/description/icon.png"/>
+
+    <!-- This Sub Menu -->
+    <menuitem id="_menu_act_dashboard" name="Dashboard" action="itsm_dashboard_action" parent="_menu_itsm" sequence="1"/>
+
+</odoo>

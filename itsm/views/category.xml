@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- itsm.category tree view -->
+    <record id="itsm.category_view_tree" model="ir.ui.view">
+        <field name="name">itsm.category.view.tree</field>
+        <field name="model">itsm.category</field>
+        <field name="arch" type="xml">
+            <tree string="Asset Category" editable="bottom">
+                <!-- Add your fields here -->
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- itsm_category action window -->
+    <record id="itsm_category_action" model="ir.actions.act_window">
+        <field name="name">Asset Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">itsm.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="_menu_configuration" name="Configuration" parent="_menu_itsm" sequence="200"/>
+
+    <!-- This Menu Item Must have a parent & action -->
+    <menuitem id="_menu_act_category" name="Asset Category" action="itsm_category_action" parent="_menu_configuration" sequence="205"/>
+
+</odoo>

@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_itsm_dashboard,itsm.dashboard,model_itsm_dashboard,,1,1,1,1
+access_itsm_asset,itsm.asset,model_itsm_asset,,1,1,1,1
+access_itsm_credential,itsm.credential,model_itsm_credential,,1,1,1,1
+access_itsm_services,itsm.services,model_itsm_services,,1,1,1,1
+access_itsm_assign,itsm.assign,model_itsm_assign,,1,1,1,1
+access_itsm_renewal,itsm.renewal,model_itsm_renewal,,1,1,1,1
+access_itsm_category,itsm.category,model_itsm_category,,1,1,1,1
+access_itsm_brands,itsm.brands,model_itsm_brands,,1,1,1,1
+access_itsm_location,itsm.location,model_itsm_location,,1,1,1,1

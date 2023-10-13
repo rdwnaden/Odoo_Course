@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- itsm.services graph view -->
+    <record id="itsm.services_view_graph" model="ir.ui.view">
+        <field name="name">itsm.services.view.graph</field>
+        <field name="model">itsm.services</field>
+        <field name="arch" type="xml">
+            <graph string="Graph Description" stacked="false">
+                <!-- Add your fields here -->
+                <field name="company_id"/>
+                <field name="name"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- itsm.asset graph view -->
+    <record id="itsm.asset_view_graph" model="ir.ui.view">
+        <field name="name">itsm.asset.view.graph</field>
+        <field name="model">itsm.asset</field>
+        <field name="arch" type="xml">
+            <graph string="Asset Report" stacked="false">
+                <!-- Add your fields here -->
+                <field name="company_id"/>
+                <field name="category_id"/>  
+            </graph>
+        </field>
+    </record>
+
+    <!-- itsm.repair pivot view -->
+    <record id="itsm.services_view_pivot" model="ir.ui.view">
+        <field name="name">itsm.services.view.pivot</field>
+        <field name="model">itsm.services</field>
+        <field name="arch" type="xml">
+            <pivot string="Pivot Description">
+                <!-- Add your fields here -->
+                <field name="name" type="row"/>
+                <field name="asset_id" type="row"/>
+                <field name="state" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- itsm.asset pivot view -->
+    <record id="itsm.asset_view_pivot" model="ir.ui.view">
+        <field name="name">itsm.asset.view.pivot</field>
+        <field name="model">itsm.asset</field>
+        <field name="arch" type="xml">
+            <pivot string="Pivot Description">
+                <!-- Add your fields here -->
+                <field name="company_id" type="row"/>
+                <field name="category_id" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- itsm_repair action window -->
+    <record id="itsm_repair_action" model="ir.actions.act_window">
+        <field name="name">Asset Repair Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">itsm.services</field>
+        <field name="view_mode">graph,pivot</field>
+    </record>    
+
+    <!-- itsm_asset action window -->
+    <record id="itsm_reporting_action" model="ir.actions.act_window">
+        <field name="name">Asset Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">itsm.asset</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="view_id" ref="itsm.asset_view_graph"/>
+    </record>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="_menu_reporting" name="Reporting" parent="_menu_itsm" sequence="150"/>
+
+    <!-- This Menu Item Must have a parent & action -->
+    <menuitem id="_menu_act_reporting" name="Asset Report" action="itsm_reporting_action" parent="_menu_reporting" sequence="155"/>
+
+     <!-- This Menu Item Must have a parent & action -->
+    <menuitem id="_menu_act_repair" name="Asset Repair Report" action="itsm_repair_action" parent="_menu_reporting" sequence="160"/>
+
+</odoo>

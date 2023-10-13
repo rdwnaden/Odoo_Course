@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- itsm.renewal form view -->
+    <record id="itsm.renewal_view_form" model="ir.ui.view">
+        <field name="name">itsm.renewal.view.form</field>
+        <field name="model">itsm.renewal</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group name="item_information" string="ITEM INFORMATION">
+                        <!-- Add your fields here -->
+                        <group>
+                            <field name="name"/>
+                            <field name="vendor_id" options="{'no_open':True,'no_create':True}"/>
+                            <field name="register_date"/>
+                        </group>
+                        <group>
+                            <field name="item_category"/>
+                            <field name="period"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="remarks" string="Remarks">
+                            <field name="remarks"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- itsm.renewal tree view -->
+    <record id="itsm.renewal_view_tree" model="ir.ui.view">
+        <field name="name">itsm.renewal.view.tree</field>
+        <field name="model">itsm.renewal</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="vendor_id"/>
+                <field name="register_date"/>
+                <field name="item_category"/>
+                <field name="period"/>
+                <field name="my_activity_date_deadline" string="Expired in" widget="remaining_days"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- itsm.renewal search view -->
+    <record id="itsm.renewal_view_search" model="ir.ui.view">
+        <field name="name">itsm.renewal.view.search</field>
+        <field name="model">itsm.renewal</field>
+        <field name="arch" type="xml">
+            <search string="Search Description">
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="vendor_id"/>
+                <field name="register_date"/>
+                <field name="item_category"/>
+                <field name="period"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- itsm_renewal action window -->
+    <record id="itsm_renewal_action" model="ir.actions.act_window">
+        <field name="name">Renewal and Subscriptions</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">itsm.renewal</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+     <!-- This Menu Item Must have a parent & action -->
+    <menuitem id="_menu_act_renewal" name="Renewal and Subscriptions" action="itsm_renewal_action" parent="_menu_services" sequence="115"/>
+
+</odoo>

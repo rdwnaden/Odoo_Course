@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequences for sale.order -->
+        <record id="seq_lib_trans" model="ir.sequence">
+            <field name="name">Ridwan Library</field>
+            <field name="code">ridwan_library.transaction</field>
+            <field name="prefix">BTC</field>
+            <field name="padding">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

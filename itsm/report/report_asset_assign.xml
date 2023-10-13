@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Report Template Header - Assign -->
+ 
+    <template id="header_assign">
+        <t t-if="o and 'company_id' in o">
+            <t t-set="company" t-value="o.asset_id.company_id"></t>
+        </t>
+        <t t-if="not o or not 'company_id' in o">
+            <t t-set="company" t-value="res_company"></t>
+        </t>
+        <div class="header">
+            <div class="row mt32 mb32">
+                <div class="col-6">
+                    <img t-if="o.asset_id.company_id.logo" t-att-src="image_data_uri(o.asset_id.company_id.logo)" style="max-height: 50px;" />
+                </div>
+                <div class="col-6 text-right" style="font:15px lucida-console,sans-serif !important;padding:10px">
+                    <span t-field="o.asset_id.company_id" style="font-size: 20px;color:black;font-weight: bold;"/>
+                    <br/>
+                    <br/>
+                    <span t-field="o.asset_id.company_id.street" style="color:black;"/>
+                    <br/>
+                </div>
+            </div>
+        </div>
+    </template>
+ 
+ 
+    <!-- Report Template Body - Assign -->
+ 
+    <template id="body_assign">
+        <div class="page">
+            <div class="d-flex justify-content-center">
+                <table class="table table-bordered" style="width:50%; border: none;">
+                    <tbody>
+                        <tr>
+                            <td style="width:25%;padding:5px;color:black;border: none; font-weight: 400;">Form Number </td>
+                            <td style="width:75%;padding:5px;font-weight: bold;border: none;">:
+                                <t t-esc="o.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;padding:5px;color:black;border: none;">Asset Number </td>
+                            <td style="width:75%;padding:5px; border: none;">:
+                                <t t-esc="o.asset_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;padding:5px;color:black;border: none;">Assign To </td>
+                            <td style="width:75%;padding:5px;border: none;">:
+                                <t t-esc="o.new_employee_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;padding:5px;color:black;border: none;">Department </td>
+                            <td style="width:75%;padding:5px;border: none;">:
+                                <t t-esc="o.new_employee_id.department_id.name"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered" style="width:50%; border: none;">
+                    <tbody>
+                        <tr>
+                            <td style="width:25%; padding:5px;color:black;font-weight: bold;border: none;">Category </td>
+                            <td style="width:75%;padding:5px;border: none;">:
+                                <t t-esc="o.category_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%; padding:5px;color:black;font-weight: bold;border: none;">Location </td>
+                            <td style="width:75%;padding:5px;border: none;">:
+                                <t t-esc="o.new_location_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;padding:5px;color:black;font-weight: bold;border: none;">Assign Date </td>
+                            <td style="width:75%;padding:5px;border: none;">:
+                                <t t-if="o.assign_date">
+                                    <t t-esc="o.assign_date.strftime('%d/%m/%Y')"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;padding:5px;color:black;font-weight: bold;border: none;">Remarks </td>
+                            <td style="width:75%;padding:5px;border: none;">:
+                                <t t-esc="o.remarks"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table class="table table-bordered mt-4">
+                <thead style="background-color:#ffffff;color:black;font-weight: bold;font-weight: bold;">
+                    <tr>
+                        <td class="text-center">No</td>
+                        <td class="text-center">Item Description</td>
+                        <td class="text-center">Qty</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </template>
+ 
+ 
+    <!-- Report Template - Assign -->
+ 
+    <template id="report_assign">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div t-if="report_type == 'html'">
+                    <div>
+                        <t t-call="itsm.header_assign"/>
+                    </div>
+                    <div style="margin-top:100px">
+                        <t t-call="itsm.body_assign"/>
+                    </div>
+                </div>
+                <div t-else="">
+                    <t t-call="itsm.header_assign"/>
+                    <t t-call="web.external_layout">
+                    <t t-call="itsm.body_assign"/>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

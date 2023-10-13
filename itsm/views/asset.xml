@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- itsm.asset form view -->
+    <record id="itsm.asset_view_form" model="ir.ui.view">
+        <field name="name">itsm.asset.view.form</field>
+        <field name="model">itsm.asset</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="picture" widget="image" options="{'size': [300, 300]}"/>
+                    </group>
+                    <group name="device_information" string="DEVICE INFORMATION">
+                        <group>
+                            <!-- Add your fields here -->
+                            <field name="name"/>
+                            <field name="category_id" options="{'no_open':True,'no_create':True}"/>
+                            <field name="serial_number" attrs="{'required':[('category_id','=','Laptop')]}"/>
+                        </group>
+                        <group>
+                            <field name="purchase_date"/>
+                            <field name="company_id" options="{'no_open':True,'no_create':True}"/>
+                            <field name="used_id" options="{'no_open':True,'no_create':True}"/>
+                            <field name="location_id" options="{'no_open':True,'no_create':True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="specification" string="Specification">
+                            <group>
+                                <group>
+                                    <field name="specification"/>
+                                </group>
+                                <group>
+                                    <field name="activation_number"/>
+                                    <field name="system_model"/>
+                                    <field name="brand_id" options="{'no_open':True,'no_create':True}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="accesories" string="Accessories">
+                            
+                        </page>
+                        <page name="credentials" string="Credentials">
+                            <field name="credential_ids" options="{'no_open':True}"/>
+                        </page>
+                        <page name="services_history" string="Services History">
+                            <field name="services_ids" options="{'no_open':True}"/>
+                        </page>
+                        <page name="equipment_history" string="Equipment History">
+                            <field name="assign_ids" options="{'no_open':True}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                    <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- itsm.asset tree view -->
+    <record id="itsm.asset_view_tree" model="ir.ui.view">
+        <field name="name">itsm.asset.view.tree</field>
+        <field name="model">itsm.asset</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="serial_number"/>
+                <field name="company_id"/>
+                <field name="used_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- itsm.asset search view -->
+    <record id="itsm.asset_view_search" model="ir.ui.view">
+        <field name="name">itsm.asset.view.search</field>
+        <field name="model">itsm.asset</field>
+        <field name="arch" type="xml">
+            <search string="Search Description">
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="serial_number"/>
+                <field name="company_id"/>
+                <field name="used_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- itsm_asset action window -->
+    <record id="itsm_asset_action" model="ir.actions.act_window">
+        <field name="name">Asset List</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">itsm.asset</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="_menu_master" name="Master" parent="_menu_itsm" sequence="50"/>
+
+    <!-- This Menu Item Must have a parent & action -->
+    <menuitem id="_menu_act_asset" name="List Asset" action="itsm_asset_action" parent="_menu_master" sequence="55"/>
+
+</odoo>

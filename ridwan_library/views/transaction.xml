@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ridwan_library.transaction form view -->
+    <record id="ridwan_library_transaction_view_form" model="ir.ui.view">
+        <field name="name">ridwan_library.transaction.view.form</field>
+        <field name="model">ridwan_library.transaction</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button name="action_confirm" states="draft" type="object" string="Confirm" class="btn-info" attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                    <button name="action_done" states="progress" type="object" string="Done" class="btn-success" attrs="{'invisible': [('state', 'not in', ['progress'])]}"/>
+                    <button name="action_set_draft" states="progress" type="object" string="Set to Draft" class="btn-success" attrs="{'invisible': [('state', 'not in', ['progress'])]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,progress,done"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="loan_date"/>
+                        <field name="return_date"/>
+                        <field name="book_id"/>
+                        <field name="description"/>
+                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ridwan_library.transaction tree view -->
+    <record id="ridwan_library_transaction_view_tree" model="ir.ui.view">
+        <field name="name">ridwan_library.transaction.view.tree</field>
+        <field name="model">ridwan_library.transaction</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="loan_date"/>
+                <field name="state"/>
+                <field name="return_date"/>
+                <field name="book_id"/>
+                <field name="description"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <!-- ridwan_library.transaction action window -->
+    <record id="ridwan_library_transaction_action" model="ir.actions.act_window">
+        <field name="name">Transaction</field>
+        <field name="res_model">ridwan_library.transaction</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="ridwan_library_transaction_menu"
+        name="Transaction"
+        parent="ridwan_library.master_data_menu"
+        action="ridwan_library_transaction_action"
+        sequence="10"/>
+</odoo>
